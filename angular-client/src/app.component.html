@@ -1,0 +1,108 @@
+<main class="page">
+  <section class="authShell">
+
+    <section class="brandPanel">
+      <div class="brandPanelInner">
+        <div class="brand">
+          <div class="brandLogo">⇄</div>
+          <span>SkillSwap</span>
+        </div>
+
+        <div class="hero">
+          <div class="eyebrow">MADE FOR CAMPUS</div>
+          <h1>Learn. Teach.<br>Swap skills.</h1>
+          <p>
+            Turn what you know into what you want to learn—one student
+            connection at a time.
+          </p>
+        </div>
+
+        <div class="swapGraphic">
+          <div class="skillTag python">Python →</div>
+          <div class="skillTag ui">UI/UX</div>
+          <div class="skillTag reactTag">React</div>
+          <div class="skillTag aiml">AI/ML</div>
+
+          <div class="personNode nodeA">▣<span class="badge orange">A</span></div>
+          <div class="personNode nodeB">♧<span class="badge purple">B</span></div>
+
+          <div class="swapArrow top">→</div>
+          <div class="swapArrow bottom">←</div>
+          <div class="arrowLabel topLabel">Python</div>
+          <div class="arrowLabel bottomLabel">UI/UX</div>
+        </div>
+
+        <div class="bottomNote">⊙ <span>Built around what students can share</span></div>
+      </div>
+    </section>
+
+    <section class="loginPanel">
+      <div class="loginContent">
+        <div class="intro">
+          <div class="purpleText">Connect. Learn. Share.</div>
+          <h2>Welcome to SkillSwap</h2>
+          <p>Your campus community is full of people worth learning from.</p>
+        </div>
+
+        <form (ngSubmit)="login()" class="loginForm">
+          <label>College email</label>
+          <div class="inputWrap">
+            <span>✉</span>
+            <input
+              type="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="you@college.edu"
+              required
+            />
+          </div>
+
+          <label>Password</label>
+          <div class="inputWrap">
+            <span>♙</span>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="At least 6 characters"
+              minlength="6"
+              required
+            />
+            <button type="button" class="iconButton" (click)="showPassword = !showPassword">
+              {{ showPassword ? "◉" : "◌" }}
+            </button>
+          </div>
+
+          <div class="formOptions">
+            <label class="remember">
+              <input type="checkbox" name="remember" [(ngModel)]="remember">
+              <span class="fakeCheckbox"></span>
+              Remember me
+            </label>
+            <button type="button" class="linkButton">Forgot password?</button>
+          </div>
+
+          <button class="loginButton" type="submit">Log in <span>→</span></button>
+
+          <div class="status" *ngIf="message">{{ message }}</div>
+        </form>
+
+        <div class="or"><span></span><b>OR</b><span></span></div>
+
+        <button class="googleButton" type="button">
+          <span class="googleG">G</span>
+          Continue with Google
+        </button>
+
+        <div class="signup">
+          Don’t have an account? <button type="button">Sign up</button>
+        </div>
+
+        <div class="demo">
+          Demo access: student@skillswap.edu · password: skillswap
+        </div>
+      </div>
+    </section>
+
+  </section>
+</main>

@@ -1,0 +1,511 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  color: #10101a;
+  background: #f7f5f1;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 28px 0;
+  display: grid;
+  place-items: center;
+  background: #f7f5f1;
+}
+
+.authShell {
+  width: min(1800px, calc(100vw - 2px));
+  min-height: calc(100vh - 56px);
+  display: grid;
+  grid-template-columns: 52.5% 47.5%;
+  overflow: hidden;
+  border: 1px solid #dddbe3;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 14px 35px rgba(29, 21, 55, 0.06);
+}
+
+.brandPanel {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-color: #211b3b;
+  background-image:
+    linear-gradient(rgba(255,255,255,.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.075) 1px, transparent 1px);
+  background-size: 53px 53px;
+}
+
+.brandPanel::before,
+.brandPanel::after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.brandPanel::before {
+  right: -120px;
+  top: -80px;
+}
+
+.brandPanel::after {
+  left: -105px;
+  bottom: -110px;
+}
+
+.brandPanelInner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 54px 64px 40px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 23px;
+  font-weight: 750;
+}
+
+.brandLogo {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #9841e9, #7739df);
+}
+
+.hero {
+  max-width: 560px;
+  margin: 128px auto 0;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 26px;
+  color: #ffcaab;
+  letter-spacing: 4px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(44px, 4.1vw, 67px);
+  line-height: 1.03;
+  letter-spacing: -2px;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 30px auto 0;
+  color: #d1cde1;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.swapGraphic {
+  position: relative;
+  width: 510px;
+  height: 220px;
+  margin: 70px auto 0;
+}
+
+.personNode {
+  position: absolute;
+  top: 53px;
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  color: #262038;
+  background: #fffdf9;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.16);
+}
+
+.nodeA { left: 64px; }
+.nodeB { right: 64px; }
+
+.badge {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.orange { background: #ff6547; }
+.purple { background: #7944e8; }
+
+.skillTag {
+  position: absolute;
+  padding: 8px 13px;
+  border-radius: 7px;
+  color: #eeeaf9;
+  background: rgba(95, 87, 125, .45);
+  border: 1px solid rgba(255,255,255,.13);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.python { left: 12px; top: 10px; transform: rotate(-3deg); }
+.ui { right: 4px; top: 3px; transform: rotate(2deg); }
+.reactTag { left: 6px; bottom: 18px; transform: rotate(2deg); }
+.aiml { right: 0; bottom: 20px; transform: rotate(-2deg); }
+
+.swapArrow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffccb7;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 200;
+}
+
+.swapArrow.top {
+  top: 49px;
+  width: 180px;
+  text-align: right;
+  border-top: 2px dashed #ffccb7;
+  padding-top: 0;
+}
+
+.swapArrow.bottom {
+  top: 100px;
+  width: 180px;
+  text-align: left;
+  border-bottom: 2px dashed #ffccb7;
+  padding-bottom: 0;
+}
+
+.arrowLabel {
+  position: absolute;
+  color: #a8a1ba;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.topLabel { left: 201px; top: -14px; }
+.bottomLabel { left: 215px; top: 156px; }
+
+.bottomNote {
+  position: absolute;
+  left: 64px;
+  bottom: 42px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #aaa4bc;
+  font-size: 14px;
+}
+
+.bottomNote svg {
+  color: #ffb69b;
+}
+
+.loginPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 8%;
+  background: #fff;
+}
+
+.loginContent {
+  width: min(100%, 560px);
+}
+
+.intro .purpleText {
+  color: #823de7;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.intro h2 {
+  margin: 0;
+  font-size: clamp(36px, 3vw, 48px);
+  letter-spacing: -1.3px;
+  line-height: 1.12;
+}
+
+.intro p {
+  margin: 22px 0 50px;
+  color: #6b6b79;
+  font-size: 16px;
+}
+
+.loginForm > label {
+  display: block;
+  margin: 0 0 7px;
+  font-size: 16px;
+}
+
+.inputWrap {
+  height: 55px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 16px;
+  margin-bottom: 29px;
+  border: 1px solid #d7d4de;
+  border-radius: 10px;
+  color: #686678;
+  transition: .2s;
+}
+
+.inputWrap:focus-within {
+  border-color: #8b43e8;
+  box-shadow: 0 0 0 3px rgba(139,67,232,.08);
+}
+
+.inputWrap input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  color: #18151f;
+  background: transparent;
+  font-size: 16px;
+}
+
+.inputWrap input::placeholder {
+  color: #8d8998;
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #6c6978;
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -4px;
+  margin-bottom: 27px;
+  color: #5f5b6b;
+  font-size: 15px;
+}
+
+.remember {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.remember input {
+  position: absolute;
+  opacity: 0;
+}
+
+.fakeCheckbox {
+  width: 19px;
+  height: 19px;
+  border: 1.5px solid #8c42e7;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.remember input:checked + .fakeCheckbox {
+  background: #8541e7;
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+.linkButton,
+.signup button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #7c36e7;
+}
+
+.linkButton {
+  font-weight: 600;
+}
+
+.loginButton {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  background: #863ee5;
+  box-shadow: 0 10px 20px rgba(134,62,229,.17);
+  font-weight: 650;
+  font-size: 16px;
+}
+
+.loginButton:hover {
+  background: #7935d3;
+}
+
+.status {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f6f1ff;
+  color: #6730bc;
+  font-size: 14px;
+}
+
+.or {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 36px 0;
+  color: #777280;
+  font-size: 12px;
+}
+
+.or span {
+  flex: 1;
+  height: 1px;
+  background: #dedbe3;
+}
+
+.or b {
+  font-weight: 500;
+}
+
+.googleButton {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #d5d2dc;
+  border-radius: 10px;
+  color: #1b1920;
+  background: white;
+  font-size: 16px;
+}
+
+.googleG {
+  color: #4285f4;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.signup {
+  margin-top: 40px;
+  text-align: center;
+  color: #777280;
+  font-size: 15px;
+}
+
+.signup button {
+  font-weight: 600;
+}
+
+.demo {
+  margin-top: 44px;
+  text-align: center;
+  color: #777280;
+  font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+  .authShell {
+    grid-template-columns: 1fr;
+    width: calc(100vw - 24px);
+  }
+
+  .brandPanel {
+    min-height: 620px;
+  }
+
+  .hero {
+    margin-top: 90px;
+  }
+
+  .loginPanel {
+    padding: 55px 7%;
+  }
+}
+
+@media (max-width: 620px) {
+  .page {
+    padding: 12px 0;
+  }
+
+  .authShell {
+    width: calc(100vw - 12px);
+  }
+
+  .brandPanelInner {
+    padding: 28px 24px;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+
+  .hero {
+    margin-top: 70px;
+  }
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .swapGraphic {
+    transform: scale(.78);
+    transform-origin: top center;
+    margin-top: 50px;
+    margin-left: -30px;
+  }
+
+  .bottomNote {
+    left: 24px;
+  }
+
+  .loginPanel {
+    padding: 45px 24px;
+  }
+
+  .intro p {
+    margin-bottom: 38px;
+  }
+}
