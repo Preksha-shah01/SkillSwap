@@ -1,0 +1,55 @@
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#19143f}
+body{background:#faf8ff}
+a{text-decoration:none;color:inherit}
+.page{min-height:100vh;overflow:hidden;
+  background-color:#faf8ff;
+  background-image:
+    linear-gradient(rgba(111,65,237,.095) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(111,65,237,.095) 1px,transparent 1px);
+  background-size:70px 70px;
+}
+.container{width:min(1340px,calc(100% - 64px));margin:0 auto}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;font-size:27px;font-weight:800;letter-spacing:-1px}
+.logo{width:45px;height:45px;border-radius:14px;background:#7938ec;color:#fff;display:grid;place-items:center;font-size:29px;font-weight:500;line-height:1}
+.nav-links{display:flex;gap:42px;margin-left:130px;color:#4f4771;font-size:18px}
+.nav-actions{display:flex;gap:13px}
+.btn-outline{border:1px solid #d7c9ff;background:rgba(255,255,255,.6);color:#6530db;border-radius:14px;padding:15px 24px;font-size:17px;font-weight:600}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:72px 0 67px}
+.badge{display:inline-block;background:#eee6ff;color:#7537ed;border-radius:999px;padding:9px 18px;font-weight:700;font-size:17px;margin-bottom:25px}
+h1{font-size:80px;line-height:.99;letter-spacing:-4px;margin:0 0 27px;font-weight:800;max-width:650px}
+.gradient{color:#7a38ed}
+.sub{font-size:23px;line-height:1.45;color:#5d557c;max-width:590px;margin:0 0 36px}
+.cta{display:inline-block;background:#7938ec;color:#fff;padding:18px 34px;border-radius:13px;font-size:18px;font-weight:750;box-shadow:0 15px 30px rgba(121,56,236,.23)}
+.features{display:flex;gap:27px;margin-top:36px;color:#59527a;font-size:17px}
+.feature::first-letter{color:#7436ec}
+.feature:before{content:"✓";color:#7537ed;font-weight:800;margin-right:8px}
+.visual{position:relative;display:flex;justify-content:flex-end}
+.visual:after{content:"";position:absolute;width:330px;height:115px;background:#e1d4ff;border-radius:50%;bottom:-24px;right:35px;filter:blur(1px);z-index:0}
+.hero-img{width:100%;max-width:614px;height:588px;object-fit:cover;border-radius:36px;position:relative;z-index:1;box-shadow:0 35px 60px rgba(93,53,192,.16)}
+.stats{border-top:1px solid #d9ccff;display:grid;grid-template-columns:repeat(4,1fr);padding:31px 0 0;margin-bottom:20px}
+.stat strong{display:block;color:#7436e8;font-size:40px;line-height:1.1}
+.stat span{display:block;color:#5b5479;font-size:17px;margin-top:11px}
+@media(max-width:1000px){
+ .nav-links{margin-left:0;gap:18px}
+ .hero{grid-template-columns:1fr;padding-top:50px}
+ .visual{justify-content:center}
+ h1{font-size:64px}
+}
+@media(max-width:650px){
+ .container{width:min(100% - 32px,1340px)}
+ .nav{height:auto;padding:16px 0;flex-wrap:wrap;gap:14px}
+ .nav-links{order:3;width:100%;justify-content:center;font-size:15px}
+ .nav-actions{gap:7px}
+ .btn-outline{padding:10px 15px;font-size:14px}
+ .brand{font-size:23px}.logo{width:40px;height:40px}
+ .hero{padding:42px 0;gap:40px}
+ h1{font-size:48px;letter-spacing:-2.5px}
+ .sub{font-size:18px}
+ .features{flex-wrap:wrap;gap:13px;font-size:15px}
+ .hero-img{height:420px;border-radius:28px}
+ .stats{grid-template-columns:1fr 1fr;gap:28px 20px}
+ .stat strong{font-size:31px}
+}
