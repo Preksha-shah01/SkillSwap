@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/angular.json",
+  "version": 1,
+  "projects": {
+    "skillswap-angular": {
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "browser": "src/main.ts",
+            "index": "src/index.html",
+            "assets": [
+              "src/assets"
+            ]
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "development": {
+              "buildTarget": "skillswap-angular:build"
+            },
+            "production": {
+              "buildTarget": "skillswap-angular:build"
+            }
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "packageManager": "npm"
+  }
+}
