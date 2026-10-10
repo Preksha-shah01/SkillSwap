@@ -1,0 +1,251 @@
+/* Main Page */
+
+.knowledge-hub {
+  min-height: 100vh;
+  padding: 40px;
+  background-color: #f7f8fc;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+
+/* Header */
+
+.hub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.hub-header h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #202124;
+}
+
+.hub-header p {
+  margin-top: 8px;
+  margin-bottom: 0;
+  color: #6b7280;
+}
+
+
+/* Upload Button */
+
+.upload-btn {
+  border: none;
+  background-color: #5b5bd6;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background-color: #4747bd;
+}
+
+
+/* Search */
+
+.search-section {
+  margin-bottom: 20px;
+}
+
+.search-section input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 18px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  background-color: white;
+}
+
+.search-section input:focus {
+  border-color: #5b5bd6;
+}
+
+
+/* Filters */
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.filters button {
+  padding: 9px 16px;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.filters button:hover {
+  border-color: #5b5bd6;
+  color: #5b5bd6;
+}
+
+
+/* Active Filter */
+
+.filters button.active {
+  background-color: #5b5bd6;
+  color: white;
+  border-color: #5b5bd6;
+}
+
+
+/* Resources */
+
+.resources h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #202124;
+}
+
+
+/* Resource Grid */
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+
+/* Resource Card */
+
+.resource-card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: 0.2s;
+}
+
+.resource-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Resource Icon */
+
+.resource-icon {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+
+/* Card Heading */
+
+.resource-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #202124;
+}
+
+
+/* Card Description */
+
+.resource-card p {
+  color: #6b7280;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+
+/* Card Information */
+
+.resource-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  font-size: 13px;
+}
+
+.resource-info span:first-child {
+  color: #6b7280;
+}
+
+.resource-info span:last-child {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+
+/* View Notes Button */
+
+.resource-card button {
+  width: 100%;
+  padding: 11px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f0f0ff;
+  color: #5b5bd6;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.resource-card button:hover {
+  background-color: #e3e3ff;
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hub-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .knowledge-hub {
+    padding: 20px;
+  }
+
+}
+/* Smaller Screens */
+
+@media (max-width: 500px) {
+
+  .knowledge-hub {
+    padding: 15px;
+  }
+
+  .hub-header h1 {
+    font-size: 26px;
+  }
+
+  .upload-btn {
+    width: 100%;
+  }
+
+  .filters {
+    gap: 8px;
+  }
+
+  .filters button {
+    font-size: 13px;
+    padding: 8px 13px;
+  }
+
+}
