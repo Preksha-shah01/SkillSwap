@@ -42,15 +42,3 @@ Open http://localhost:4200
 This is a learning/demo app. Accounts are stored in memory and reset whenever the server restarts. Passwords are hashed with bcrypt before storage. For production, use a database, HTTPS, server-side validation, rate limiting, and a proper session/token strategy.
 
 
-## Team Responsibilities and Branches
-
-| Responsibility | Branch Name |
-|---|---|
-| Landing Page | `feature/landing-page` |
-| Registration Page | `feature/register-page` |
-| Login Page | `feature/login-page` |
-| Dashboard | `feature/dashboard` |
-| Backend Authentication | `feature/auth-api` |
-| Database Setup | `feature/database-setup` |
-| Knowledge Hub | `feature/knowledge-hub` |
-| Skill Exchange | `feature/skill-exchange` |
