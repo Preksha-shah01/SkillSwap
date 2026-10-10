@@ -1,12 +1,14 @@
 import { useState } from "react";
 import "./KnowledgeHub.css";
+import Layout from "../components/layout";
 
 function KnowledgeHub() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
 
   return (
-    <div className="knowledge-hub">
+<Layout>
+       <div className="knowledge-hub">
 
       {/* Page Header */}
       <header className="hub-header">
@@ -111,8 +113,9 @@ function KnowledgeHub() {
                   <span>+20 Coins</span>
                 </div>
 
-                <button>View Notes</button>
-
+            <button onClick={() => window.location.href = "/note/1"}>
+  View Notes
+</button>
               </div>
             )}
 
@@ -138,7 +141,9 @@ function KnowledgeHub() {
                   <span>+15 Coins</span>
                 </div>
 
-                <button>View Notes</button>
+                <button onClick={() => window.location.href = "/note/1"}>
+  View Notes
+</button>
 
               </div>
             )}
@@ -165,7 +170,9 @@ function KnowledgeHub() {
                   <span>+20 Coins</span>
                 </div>
 
-                <button>View Notes</button>
+                <button onClick={() => window.location.href = "/note/1"}>
+  View Notes
+</button>
 
               </div>
             )}
@@ -175,7 +182,8 @@ function KnowledgeHub() {
       </section>
 
     </div>
-  );
+    </Layout> 
+     );
 }
 
 export default KnowledgeHub;

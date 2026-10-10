@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./UploadNotes.css";
+import Layout from "../components/layout";
 
 function UploadNotes() {
       const [title, setTitle] = useState("");
@@ -17,6 +18,7 @@ function UploadNotes() {
   console.log("File:", file);
 }; 
   return (
+    <Layout>
     <div className="upload-page">
 
       <div className="upload-container">
@@ -98,6 +100,7 @@ function UploadNotes() {
       </div>
 
     </div>
+    </Layout>
   );
 }
 
