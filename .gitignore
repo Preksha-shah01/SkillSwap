@@ -20,3 +20,5 @@ client/dist/
 .DS_Store
 Thumbs.db
 .vscode/
+
+atlas-credentials.env
