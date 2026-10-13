@@ -1,4 +1,4 @@
-
+const resourceRoutes = require("./routes/resourceRoutes");
 const express = require("express");
 const cors = require("cors");
 
@@ -18,5 +18,6 @@ app.get("/api/health", (req, res) => {
 
 // Authentication routes
 app.use("/api/auth", authRoutes);
+app.use("/api/resources", resourceRoutes);
 
 module.exports = app;
