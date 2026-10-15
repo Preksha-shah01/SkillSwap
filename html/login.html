@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Log in | SkillSwap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+  <main class="auth-card">
+
+    <section class="brand">
+      <div class="logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
+            <line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/>
+            <line x1="2" y1="14" x2="6" y2="14"/><line x1="10" y1="8" x2="14" y2="8"/><line x1="18" y1="16" x2="22" y2="16"/>
+          </svg>
+        </span>
+        SkillSwap
+      </div>
+
+      <div class="brand-center">
+        <div class="eyebrow">MADE FOR CAMPUS</div>
+        <h2>Learn. Teach.<br />Swap skills.</h2>
+        <p class="lead">Turn what you know into what you want to learn—one student connection at a time.</p>
+      </div>
+
+      <div class="illus" aria-hidden="true">
+        <span class="tag-label t">Python</span>
+        <span class="chip python">Python ⤍</span>
+        <span class="chip uiux">UI/UX</span>
+
+        <div class="dash top"></div>
+        <div class="dash bottom"></div>
+        <span class="arrow right">⟶</span>
+        <span class="arrow left">⟵</span>
+
+        <div class="circle a">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="circle b">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <span class="badge a">A</span>
+        <span class="badge b">B</span>
+
+        <span class="chip react">React</span>
+        <span class="chip aiml">AI/ML</span>
+        <span class="tag-label b">UI/UX</span>
+      </div>
+
+      <div class="brand-foot">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        Built around what students can share
+      </div>
+    </section>
+
+    <section class="form-panel login-page">
+      <div class="form-wrap">
+        <p class="tagline">Connect. Learn. Share.</p>
+        <h1>Welcome to SkillSwap</h1>
+        <p class="subtitle">Your campus community is full of people worth learning from.</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="email">College email</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              <input type="email" id="email" name="email" placeholder="you@college.edu" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="password" name="password" class="has-toggle" placeholder="At least 6 characters" autocomplete="current-password" required />
+              <button type="button" class="toggle" data-target="password" aria-label="Show password"></button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember"><input type="checkbox" id="remember" /> Remember me</label>
+            <a href="#" class="forgot">Forgot password?</a>
+          </div>
+
+          <p class="error" id="formError" role="alert"></p>
+
+          <button type="submit" class="btn-primary" id="loginBtn">
+            Log in
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <div class="divider">OR</div>
+
+          <button type="button" class="btn-google" id="googleBtn">
+            <span class="g">G</span> Continue with Google
+          </button>
+
+          <p class="switch">Don't have an account? <a href="register.html">Sign up</a></p>
+          <p class="demo">Demo access: student@skillswap.edu · password: skillswap</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/login.js"></script>
+  <script type="module" src="js/google-firebase.js"></script>
+</body>
+</html>

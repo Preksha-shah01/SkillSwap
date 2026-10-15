@@ -1,0 +1,53 @@
+<main class="auth-card">
+  <app-brand-panel />
+
+  <section class="form-panel login-page">
+    <div class="form-wrap">
+      <p class="tagline">Connect. Learn. Share.</p>
+      <h1>Welcome to SkillSwap</h1>
+      <p class="subtitle">Your campus community is full of people worth learning from.</p>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="field">
+          <label for="email">College email</label>
+          <div class="control">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <input id="email" type="email" formControlName="email" placeholder="you&#64;college.edu" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="control">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input id="password" [type]="showPassword ? 'text' : 'password'" class="has-toggle" formControlName="password" placeholder="At least 6 characters" autocomplete="current-password" />
+            <button type="button" class="toggle" [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'" (click)="showPassword = !showPassword">
+              @if (showPassword) { <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-6.5 0-10-7-10-7a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 5c6.5 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="m1 1 22 22"/></svg> } @else { <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> }
+            </button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <label class="remember"><input type="checkbox" formControlName="remember" /> Remember me</label>
+          <a href="#" class="forgot">Forgot password?</a>
+        </div>
+
+        @if (error) { <p class="error show" role="alert">{{ error }}</p> }
+
+        <button type="submit" class="btn-primary" [disabled]="loading">
+          {{ loading ? 'Logging in...' : 'Log in' }}
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+
+        <div class="divider">OR</div>
+
+        <button type="button" class="btn-google">
+          <span class="g">G</span> Continue with Google
+        </button>
+
+        <p class="switch">Don't have an account? <a routerLink="/register">Sign up</a></p>
+        <p class="demo">Demo access: student&#64;skillswap.edu · password: skillswap</p>
+      </form>
+    </div>
+  </section>
+</main>

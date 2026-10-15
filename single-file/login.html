@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Log in | SkillSwap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+/* NOTE: If your login page uses a different font-family or colors,
+   change the variables below so both pages stay identical. */
+:root {
+  --bg: #f5f3ef;
+  --dark: #201b40;
+  --purple: #8340e3;
+  --purple-dark: #6d2fd0;
+  --peach: #ffc9a8;
+  --orange: #ff6b4a;
+  --text: #14122b;
+  --muted: #6b6b7b;
+  --border: #d9d9e2;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 38px 61px;
+}
+
+/* ===== Card ===== */
+.auth-card {
+  display: flex;
+  min-height: calc(100vh - 76px);
+  background: #fff;
+  border: 1px solid #e6e4df;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(20, 18, 43, 0.06);
+}
+
+/* ===== Left brand panel ===== */
+.brand {
+  position: relative;
+  flex: 0 0 52.5%;
+  background-color: var(--dark);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 53px 53px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow: hidden;
+}
+.brand::before,
+.brand::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.brand::before { width: 300px; height: 300px; top: -150px; right: -150px; }
+.brand::after  { width: 260px; height: 260px; bottom: -150px; left: -90px; }
+
+.logo {
+  position: absolute;
+  top: 54px;
+  left: 64px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: var(--purple);
+  display: grid;
+  place-items: center;
+}
+.logo-icon svg { width: 24px; height: 24px; stroke: #fff; }
+
+.brand-center { text-align: center; width: 100%; max-width: 620px; }
+.eyebrow {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  color: var(--peach);
+  margin-bottom: 36px;
+}
+.brand h2 {
+  font-size: 68px;
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 36px;
+}
+.brand p.lead {
+  font-size: 17px;
+  line-height: 1.55;
+  color: #ece9ff;
+  max-width: 570px;
+  margin: 0 auto;
+}
+
+/* Illustration */
+.illus {
+  position: relative;
+  width: 540px;
+  height: 240px;
+  margin: 56px auto 0;
+  flex-shrink: 0;
+}
+.chip {
+  position: absolute;
+  background: #2f2a52;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+.chip.python { left: 20px; top: 23px; transform: rotate(-3deg); }
+.chip.uiux   { left: 450px; top: 18px; transform: rotate(2deg); }
+.chip.react  { left: 14px; top: 181px; transform: rotate(2deg); }
+.chip.aiml   { left: 452px; top: 179px; transform: rotate(-3deg); }
+
+.circle {
+  position: absolute;
+  top: 67px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  color: var(--dark);
+}
+.circle svg { width: 30px; height: 30px; stroke: var(--dark); }
+.circle.a { left: 72px; }
+.circle.b { left: 366px; }
+
+.badge {
+  position: absolute;
+  top: 133px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  border: 2px solid var(--dark);
+}
+.badge.a { left: 137px; background: var(--orange); }
+.badge.b { left: 431px; background: var(--purple); }
+
+.dash {
+  position: absolute;
+  left: 173px;
+  width: 180px;
+  border-top: 2px dashed var(--peach);
+}
+.dash.top { top: 63px; }
+.dash.bottom { top: 162px; }
+
+.arrow {
+  position: absolute;
+  color: var(--peach);
+  font-size: 34px;
+  line-height: 1;
+}
+.arrow.right { left: 316px; top: 80px; }
+.arrow.left  { left: 176px; top: 130px; }
+
+.tag-label {
+  position: absolute;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #c9c4e6;
+  transform: translateX(-50%);
+}
+.tag-label.t { left: 231px; top: 3px; }
+.tag-label.b { left: 242px; top: 172px; }
+
+.brand-foot {
+  position: absolute;
+  left: 64px;
+  bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #d9d4f2;
+}
+.brand-foot svg { width: 18px; height: 18px; stroke: var(--peach); }
+
+/* ===== Right form panel ===== */
+.form-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 147px;
+}
+.form-wrap { width: 100%; max-width: 560px; }
+
+.tagline {
+  color: var(--purple);
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.form-wrap h1 {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.field { margin-bottom: 20px; }
+.field label {
+  display: block;
+  font-size: 15.5px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.control > .ico {
+  position: absolute;
+  left: 18px;
+  width: 19px;
+  height: 19px;
+  stroke: #3a3852;
+  pointer-events: none;
+}
+.control input,
+.control select {
+  width: 100%;
+  height: 55px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 15.5px;
+  color: var(--text);
+  padding: 0 16px 0 51px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.control select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6b7b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+.control select:invalid { color: #8b8b99; }
+.control input::placeholder { color: #8b8b99; }
+.control input:focus,
+.control select:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(131, 64, 227, 0.14);
+}
+.control input.has-toggle { padding-right: 50px; }
+.toggle {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+}
+.toggle svg { width: 19px; height: 19px; stroke: #3a3852; }
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  color: #4a4860;
+  margin: 4px 0 24px;
+}
+.terms input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--purple);
+  border-radius: 4px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.terms input:checked {
+  background: var(--purple)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
+    center / 12px no-repeat;
+}
+.terms a { color: var(--purple); font-weight: 600; text-decoration: none; }
+.terms a:hover { text-decoration: underline; }
+
+.btn-primary {
+  width: 100%;
+  height: 55px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--purple);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 10px 22px rgba(131, 64, 227, 0.28);
+  transition: background 0.15s, transform 0.1s;
+}
+.btn-primary:hover { background: var(--purple-dark); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-primary svg { width: 18px; height: 18px; stroke: #fff; }
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 26px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #55546a;
+}
+.divider::before,
+.divider::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+.btn-google {
+  width: 100%;
+  height: 55px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 15.5px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.15s;
+}
+.btn-google:hover { background: #faf9fc; }
+.btn-google .g { color: #4285f4; font-weight: 800; font-size: 17px; }
+
+.switch {
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 28px;
+}
+.switch a { color: var(--purple); font-weight: 600; text-decoration: none; }
+.switch a:hover { text-decoration: underline; }
+
+.error {
+  display: none;
+  color: #d93025;
+  font-size: 13.5px;
+  margin: -8px 0 16px;
+}
+.error.show { display: block; }
+
+/* ===== Responsive ===== */
+@media (max-width: 1280px) {
+  .form-panel { padding: 48px 80px; }
+  .brand h2 { font-size: 56px; }
+}
+@media (max-width: 960px) {
+  body { padding: 16px; }
+  .brand { display: none; }
+  .auth-card { min-height: calc(100vh - 32px); }
+  .form-panel { padding: 40px 28px; }
+  .form-wrap h1 { font-size: 38px; }
+}
+@media (max-width: 560px) {
+  .row { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* ===== Login page additions ===== */
+.login-page .subtitle { margin-bottom: 56px; }
+.login-page .field { margin-bottom: 24px; }
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2px 0 26px;
+  font-size: 15px;
+}
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4a4860;
+  cursor: pointer;
+}
+.remember input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--purple);
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.remember input:checked {
+  background: var(--purple)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
+    center / 12px no-repeat;
+}
+.forgot { color: var(--purple); font-weight: 500; text-decoration: none; }
+.forgot:hover { text-decoration: underline; }
+.demo {
+  text-align: center;
+  font-size: 12.5px;
+  color: #55546a;
+  margin-top: 44px;
+}
+.btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+
+</style>
+</head>
+<body>
+  <main class="auth-card">
+
+    <section class="brand">
+      <div class="logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
+            <line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/>
+            <line x1="2" y1="14" x2="6" y2="14"/><line x1="10" y1="8" x2="14" y2="8"/><line x1="18" y1="16" x2="22" y2="16"/>
+          </svg>
+        </span>
+        SkillSwap
+      </div>
+
+      <div class="brand-center">
+        <div class="eyebrow">MADE FOR CAMPUS</div>
+        <h2>Learn. Teach.<br />Swap skills.</h2>
+        <p class="lead">Turn what you know into what you want to learn—one student connection at a time.</p>
+      </div>
+
+      <div class="illus" aria-hidden="true">
+        <span class="tag-label t">Python</span>
+        <span class="chip python">Python ⤍</span>
+        <span class="chip uiux">UI/UX</span>
+
+        <div class="dash top"></div>
+        <div class="dash bottom"></div>
+        <span class="arrow right">⟶</span>
+        <span class="arrow left">⟵</span>
+
+        <div class="circle a">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="circle b">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <span class="badge a">A</span>
+        <span class="badge b">B</span>
+
+        <span class="chip react">React</span>
+        <span class="chip aiml">AI/ML</span>
+        <span class="tag-label b">UI/UX</span>
+      </div>
+
+      <div class="brand-foot">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        Built around what students can share
+      </div>
+    </section>
+
+    <section class="form-panel login-page">
+      <div class="form-wrap">
+        <p class="tagline">Connect. Learn. Share.</p>
+        <h1>Welcome to SkillSwap</h1>
+        <p class="subtitle">Your campus community is full of people worth learning from.</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="email">College email</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              <input type="email" id="email" name="email" placeholder="you@college.edu" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="password" name="password" class="has-toggle" placeholder="At least 6 characters" autocomplete="current-password" required />
+              <button type="button" class="toggle" data-target="password" aria-label="Show password"></button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember"><input type="checkbox" id="remember" /> Remember me</label>
+            <a href="#" class="forgot">Forgot password?</a>
+          </div>
+
+          <p class="error" id="formError" role="alert"></p>
+
+          <button type="submit" class="btn-primary" id="loginBtn">
+            Log in
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <div class="divider">OR</div>
+
+          <button type="button" class="btn-google" id="googleBtn">
+            <span class="g">G</span> Continue with Google
+          </button>
+
+          <p class="switch">Don't have an account? <a href="register.html">Sign up</a></p>
+          <p class="demo">Demo access: student@skillswap.edu · password: skillswap</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script>
+// Change this if your Node server runs on a different URL/port
+const API_URL = 'http://localhost:5000/api';
+
+// Eye icons for show/hide password (same as login page)
+const EYE = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+const EYE_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-6.5 0-10-7-10-7a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 5c6.5 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="m1 1 22 22"/></svg>';
+
+document.querySelectorAll('.toggle').forEach(btn => {
+  btn.innerHTML = EYE;
+  btn.addEventListener('click', () => {
+    const input = document.getElementById(btn.dataset.target);
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    btn.innerHTML = show ? EYE_OFF : EYE;
+    btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+});
+
+const form = document.getElementById('loginForm');
+const errorEl = document.getElementById('formError');
+const loginBtn = document.getElementById('loginBtn');
+
+function showError(msg) {
+  errorEl.textContent = msg;
+  errorEl.classList.add('show');
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  errorEl.classList.remove('show');
+
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const remember = document.getElementById('remember').checked;
+
+  if (!/^\S+@\S+\.\S+$/.test(email)) return showError('Please enter a valid college email.');
+  if (password.length < 6) return showError('Password must be at least 6 characters.');
+
+  loginBtn.disabled = true;
+  fetch(API_URL + '/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  })
+    .then((r) => r.json().then((j) => ({ ok: r.ok, j })))
+    .then(({ ok, j }) => {
+      if (!ok) return showError(j.message || 'Login failed');
+      (remember ? localStorage : sessionStorage).setItem('token', j.token);
+      alert('Logged in successfully!');
+      // window.location.href = 'dashboard.html';
+    })
+    .catch(() => showError('Cannot reach the server. Is the backend running?'))
+    .finally(() => { loginBtn.disabled = false; });
+});
+
+document.getElementById('googleBtn').addEventListener('click', () => {
+  // TODO: connect Google login here
+});
+
+</script>
+</body>
+</html>
