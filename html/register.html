@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create Account | SkillSwap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/register.css" />
+</head>
+<body>
+  <main class="auth-card">
+
+    <!-- LEFT: brand panel (same as login) -->
+    <section class="brand">
+      <div class="logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
+            <line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/>
+            <line x1="2" y1="14" x2="6" y2="14"/><line x1="10" y1="8" x2="14" y2="8"/><line x1="18" y1="16" x2="22" y2="16"/>
+          </svg>
+        </span>
+        SkillSwap
+      </div>
+
+      <div class="brand-center">
+        <div class="eyebrow">MADE FOR CAMPUS</div>
+        <h2>Learn. Teach.<br />Swap skills.</h2>
+        <p class="lead">Turn what you know into what you want to learn—one student connection at a time.</p>
+      </div>
+
+      <div class="illus" aria-hidden="true">
+        <span class="tag-label t">Python</span>
+        <span class="chip python">Python ⤍</span>
+        <span class="chip uiux">UI/UX</span>
+
+        <div class="dash top"></div>
+        <div class="dash bottom"></div>
+        <span class="arrow right">⟶</span>
+        <span class="arrow left">⟵</span>
+
+        <div class="circle a">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div class="circle b">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <span class="badge a">A</span>
+        <span class="badge b">B</span>
+
+        <span class="chip react">React</span>
+        <span class="chip aiml">AI/ML</span>
+        <span class="tag-label b">UI/UX</span>
+      </div>
+
+      <div class="brand-foot">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        Built around what students can share
+      </div>
+    </section>
+
+    <!-- RIGHT: register form -->
+    <section class="form-panel">
+      <div class="form-wrap">
+        <p class="tagline">Connect. Learn. Share.</p>
+        <h1>Create Account</h1>
+        <p class="subtitle">Your campus community is full of people worth learning from.</p>
+
+        <form id="registerForm" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="fullName">Full name</label>
+              <div class="control">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">College email</label>
+              <div class="control">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                <input type="email" id="email" name="email" placeholder="you@college.edu" autocomplete="email" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="control">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="password" name="password" class="has-toggle" placeholder="At least 6 characters" autocomplete="new-password" minlength="6" required />
+                <button type="button" class="toggle" data-target="password" aria-label="Show password"></button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="confirmPassword">Confirm password</label>
+              <div class="control">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="has-toggle" placeholder="Re-enter password" autocomplete="new-password" required />
+                <button type="button" class="toggle" data-target="confirmPassword" aria-label="Show password"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="university">University</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 10-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+              <select id="university" name="university" required>
+                <option value="" disabled selected>Select university</option>
+                <option>Veer Narmad South Gujarat University</option>
+                <option>Sardar Vallabhbhai National Institute of Technology</option>
+                <option>Gujarat Technological University</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="department">Department</label>
+              <div class="control">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M8 10h.01M16 10h.01M12 10h.01M8 14h.01M16 14h.01M12 14h.01"/></svg>
+                <select id="department" name="department" required>
+                  <option value="" disabled selected>Select department</option>
+                  <option>Computer Science</option>
+                  <option>Information Technology</option>
+                  <option>Electronics</option>
+                  <option>Mechanical</option>
+                  <option>Civil</option>
+                  <option>Business / Management</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="semester">Semester</label>
+              <div class="control">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                <select id="semester" name="semester" required>
+                  <option value="" disabled selected>Select semester</option>
+                  <option>1</option><option>2</option><option>3</option><option>4</option>
+                  <option>5</option><option>6</option><option>7</option><option>8</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <p class="error" id="formError" role="alert"></p>
+
+          <label class="terms">
+            <input type="checkbox" id="terms" required />
+            <span>I agree to the <a href="#">Terms &amp; Conditions</a></span>
+          </label>
+
+          <button type="submit" class="btn-primary">
+            Sign up
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <div class="divider">OR</div>
+
+          <button type="button" class="btn-google" id="googleBtn">
+            <span class="g">G</span> Continue with Google
+          </button>
+
+          <p class="switch">Already have an account? <a href="login.html">Log in</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/register.js"></script>
+</body>
+</html>

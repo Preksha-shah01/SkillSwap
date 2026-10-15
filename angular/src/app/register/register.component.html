@@ -1,0 +1,107 @@
+<main class="auth-card">
+  <app-brand-panel />
+
+  <section class="form-panel">
+    <div class="form-wrap">
+      <p class="tagline">Connect. Learn. Share.</p>
+      <h1>Create Account</h1>
+      <p class="subtitle">Your campus community is full of people worth learning from.</p>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="fullName">Full name</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input id="fullName" type="text" formControlName="fullName" placeholder="Your full name" autocomplete="name" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">College email</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              <input id="email" type="email" formControlName="email" placeholder="you@college.edu" autocomplete="email" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input id="password" [type]="showPassword ? 'text' : 'password'" class="has-toggle" formControlName="password" placeholder="At least 6 characters" autocomplete="new-password" />
+              <button type="button" class="toggle" [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'" (click)="showPassword = !showPassword">
+                @if (showPassword) { <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-6.5 0-10-7-10-7a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 5c6.5 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="m1 1 22 22"/></svg> } @else { <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> }
+              </button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirm password</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input id="confirmPassword" [type]="showConfirm ? 'text' : 'password'" class="has-toggle" formControlName="confirmPassword" placeholder="Re-enter password" autocomplete="new-password" />
+              <button type="button" class="toggle" [attr.aria-label]="showConfirm ? 'Hide password' : 'Show password'" (click)="showConfirm = !showConfirm">
+                @if (showConfirm) { <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-6.5 0-10-7-10-7a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 5c6.5 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="m1 1 22 22"/></svg> } @else { <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> }
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="university">University</label>
+          <div class="control">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 10-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+            <select id="university" formControlName="university">
+              <option value="" disabled>Select university</option>
+              @for (u of universities; track u) { <option [value]="u">{{ u }}</option> }
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="department">Department</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M8 10h.01M16 10h.01M12 10h.01M8 14h.01M16 14h.01M12 14h.01"/></svg>
+              <select id="department" formControlName="department">
+                <option value="" disabled>Select department</option>
+                @for (d of departments; track d) { <option [value]="d">{{ d }}</option> }
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="semester">Semester</label>
+            <div class="control">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              <select id="semester" formControlName="semester">
+                <option value="" disabled>Select semester</option>
+                @for (s of semesters; track s) { <option [value]="s">{{ s }}</option> }
+              </select>
+            </div>
+          </div>
+        </div>
+
+        @if (error) { <p class="error show" role="alert">{{ error }}</p> }
+
+        <label class="terms">
+          <input type="checkbox" formControlName="terms" />
+          <span>I agree to the <a href="#">Terms &amp; Conditions</a></span>
+        </label>
+
+        <button type="submit" class="btn-primary" [disabled]="loading">
+          {{ loading ? 'Creating account...' : 'Sign up' }}
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+
+        <div class="divider">OR</div>
+
+        <button type="button" class="btn-google">
+          <span class="g">G</span> Continue with Google
+        </button>
+
+        <p class="switch">Already have an account? <a href="/login">Log in</a></p>
+      </form>
+    </div>
+  </section>
+</main>
