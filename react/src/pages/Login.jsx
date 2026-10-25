@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { signInWithPopup } from 'firebase/auth';
 import BrandPanel from '../components/BrandPanel.jsx';
 import { Field, PasswordInput } from '../components/FormParts.jsx';
@@ -34,18 +35,17 @@ export default function Login() {
     }
   };
 
-  // Continue with Google (Firebase)
+  // Continue with Google (Firebase) - opens the Google account chooser
   const onGoogle = async () => {
     setError('');
     try {
-      const result = await signInWithPopup(auth, googleProvider); // opens Google account chooser
+      const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       localStorage.setItem(
         'skillswapUser',
         JSON.stringify({ uid: user.uid, name: user.displayName, email: user.email, photo: user.photoURL })
       );
       alert('Welcome, ' + user.displayName + '!');
-      // navigate('/dashboard') once you have a dashboard route
     } catch (err) {
       if (err.code === 'auth/popup-closed-by-user') return;
       setError('Google sign-in failed: ' + err.code);
@@ -91,7 +91,7 @@ export default function Login() {
               <span className="g">G</span> Continue with Google
             </button>
 
-            <p className="switch">Don't have an account? <a href="http://localhost:5174/register">Sign up</a></p>
+            <p className="switch">Don't have an account? <Link to="/register">Sign up</Link></p>
             <p className="demo">Demo access: student@skillswap.edu · password: skillswap</p>
           </form>
         </div>
