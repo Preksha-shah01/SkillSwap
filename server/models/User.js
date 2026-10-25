@@ -18,10 +18,17 @@ const userSchema = new mongoose.Schema(
     },
 
     password: {
-      type: String,
-      required: [true, "Password is required"],
-      select: false,
-    },
+  type: String,
+  select: false,
+  default: undefined,
+},
+
+firebaseUid: {
+  type: String,
+  unique: true,
+  sparse: true,
+  immutable: true,
+},
 
     university: {
       type: String,
