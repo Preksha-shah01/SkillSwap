@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const generateToken = require("../utils/generateToken");
 const admin = require("../config/firebaseAdmin");
-
+const { auth } = require("../config/firebaseAdmin");
 // ======================================
 // REGISTER NEW STUDENT
 // POST /api/auth/register

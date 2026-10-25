@@ -1,28 +1,53 @@
+
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const navigate = useNavigate();
 
-  function handleLogout() {
+  const handleLogout = () => {
     sessionStorage.removeItem("skillswap_token");
+    localStorage.removeItem("skillswapUser");
+
     navigate("/login", { replace: true });
-  }
+  };
 
   return (
-    <main style={{ padding: "40px", fontFamily: "Arial" }}>
-      <h1>Welcome to SkillSwap!</h1>
+    <div style={{ width: "100%", height: "100vh" }}>
+      <div
+        style={{
+          height: "48px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          padding: "0 20px",
+          background: "#171020",
+        }}
+      >
+        <button
+          onClick={handleLogout}
+          style={{
+            padding: "8px 16px",
+            background: "#8246e5",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+          }}
+        >
+          Logout
+        </button>
+      </div>
 
-      <p>
-        You have successfully logged in.
-      </p>
-
-      <p>
-        This is the temporary Student Dashboard.
-      </p>
-
-      <button onClick={handleLogout}>
-        Logout
-      </button>
-    </main>
+      <iframe
+        title="SkillSwap Student Dashboard"
+        src="/dashboard.html"
+        style={{
+          width: "100%",
+          height: "calc(100vh - 48px)",
+          border: "none",
+          display: "block",
+        }}
+      />
+    </div>
   );
 }
