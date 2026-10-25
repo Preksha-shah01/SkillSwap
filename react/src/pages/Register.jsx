@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { signInWithPopup } from 'firebase/auth';
 import BrandPanel from '../components/BrandPanel.jsx';
 import { registerUser } from '../api.js';
@@ -69,6 +70,7 @@ const INITIAL = {
 };
 
 export default function Register() {
+  const navigate = useNavigate();
   const [form, setForm] = useState(INITIAL);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -101,7 +103,7 @@ export default function Register() {
       const data = await registerUser({ ...payload, university: UNIVERSITY_NAME });
       localStorage.setItem('token', data.token);
       alert('Account created successfully!');
-      window.location.href = 'http://localhost:5173/login';
+      navigate('/login');
     } catch (err) {
       setError(err.message);
     } finally {
@@ -188,7 +190,7 @@ export default function Register() {
               <span className="g">G</span> Continue with Google
             </button>
 
-            <p className="switch">Already have an account? <a href="http://localhost:5173/login">Log in</a></p>
+            <p className="switch">Already have an account? <Link to="/login">Log in</Link></p>
           </form>
         </div>
       </section>
