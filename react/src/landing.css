@@ -1,0 +1,155 @@
+/* ===== SkillSwap - Landing page =====
+   Every rule is scoped under .lp so it never affects the Login / Register / Sessions pages.
+   Sizes use "em" and the root font-size scales with the screen width, so the page keeps
+   the same proportions on any monitor (16px at a 1920px-wide screen). */
+.lp {
+  --ink: #1b1140;
+  --muted: #5a5473;
+  --brand: #7c3aed;
+  --brand-d: #6d28d9;
+  --soft: #ede8fb;
+  --border: #e4dff2;
+
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(9px, 0.8334vw, 18px);
+  color: var(--ink);
+  line-height: 1.5;
+
+  background-color: #fcfbff;
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+  background-size: 5.47em 5.47em;
+}
+.lp *, .lp *::before, .lp *::after { box-sizing: border-box; }
+.lp a { color: inherit; text-decoration: none; }
+.lp h1, .lp p { margin: 0; }
+
+.lp .lp-wrap { width: min(100.875em, calc(100% - 3em)); margin: 0 auto; }
+
+/* ----- Top bar ----- */
+.lp .lp-nav { background: #fff; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.lp .lp-nav-in { height: 5em; display: flex; align-items: center; justify-content: space-between; }
+
+.lp .lp-logo { display: flex; align-items: center; gap: 0.59em; font-size: 2.125em; font-weight: 700; letter-spacing: -0.03em; }
+.lp .lp-logo-icon { width: 1.765em; height: 1.765em; border-radius: 0.41em; background: var(--brand); display: grid; place-items: center; }
+.lp .lp-logo-icon svg { width: 0.7em; height: 0.7em; stroke: #fff; }
+
+.lp .lp-nav-cta { display: flex; gap: 1em; }
+.lp .lp-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 3.3em; padding: 0 1.43em;
+  border: 1px solid var(--border); border-radius: 0.667em;
+  background: #fff; color: var(--brand);
+  font-size: 1.3125em; font-weight: 400; letter-spacing: -0.01em;
+  transition: background 0.15s, border-color 0.15s;
+}
+.lp .lp-btn:hover { background: var(--soft); border-color: #d3c8f0; }
+
+/* ----- Main ----- */
+.lp .lp-main { flex: 1; display: flex; flex-direction: column; }
+
+.lp .lp-hero {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 36.9em;
+  justify-content: space-between;
+  align-items: start;
+  gap: 3em;
+  padding-top: 4.6em;
+  padding-bottom: 3em;
+}
+
+.lp .lp-tag {
+  display: inline-flex; align-items: center;
+  height: 2.57em; padding: 0 1.05em;
+  border-radius: 99px; background: var(--soft); color: var(--brand);
+  font-size: 1.3125em; font-weight: 500; letter-spacing: -0.01em;
+}
+
+.lp h1 {
+  margin-top: 0.34em;
+  font-size: 5.5em; font-weight: 800; line-height: 1.08;
+  letter-spacing: -0.055em; word-spacing: -0.06em;
+  color: var(--ink);
+}
+.lp h1 span { display: block; color: var(--brand); }
+
+.lp .lp-sub { margin-top: 0.85em; max-width: 19.5em; font-size: 1.625em; line-height: 1.5; color: var(--muted); letter-spacing: -0.01em; }
+
+.lp .lp-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: 1.6em; height: 3.46em; padding: 0 1.75em;
+  border-radius: 0.667em; background: var(--brand); color: #fff;
+  font-size: 1.5em; font-weight: 600; letter-spacing: -0.01em;
+  box-shadow: 0 0.6em 1.3em rgba(124, 58, 237, 0.32);
+  transition: background 0.15s, transform 0.1s;
+}
+.lp .lp-cta:hover { background: var(--brand-d); }
+.lp .lp-cta:active { transform: translateY(1px); }
+
+.lp .lp-perks { display: flex; flex-wrap: wrap; gap: 0.6em 2.2em; margin-top: 2.4em; font-size: 1.3em; color: var(--muted); letter-spacing: -0.01em; }
+.lp .lp-perks span::before { content: "✓"; color: var(--brand); font-weight: 700; margin-right: 0.55em; }
+
+/* ----- Photo ----- */
+.lp .lp-photo { position: relative; margin-top: 0.25em; width: 36.9em; height: 35.4em; }
+.lp .lp-photo::before {              /* purple shape peeking out under the photo */
+  content: ""; position: absolute; left: 12%; right: 8%; bottom: -1.7em; height: 3.4em;
+  border-radius: 0 0 2.4em 2.4em; background: linear-gradient(#b99cf8, #a67ff3); filter: blur(2px);
+}
+.lp .lp-photo::after {               /* soft purple glow */
+  content: ""; position: absolute; inset: 2em -2em 0; z-index: 0;
+  background: rgba(124, 58, 237, 0.18); filter: blur(4em); border-radius: 3em;
+}
+.lp .lp-photo img {
+  position: relative; z-index: 1;
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  border-radius: 2.1em;
+}
+
+/* ----- Stats ----- */
+.lp .lp-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2em;
+  border-top: 1px solid var(--border);
+  padding: 2.4em 0 2.1em;
+}
+.lp .lp-stats strong { display: block; font-size: 2.9em; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--brand); }
+.lp .lp-stats span { display: block; margin-top: 0.55em; font-size: 1.4em; color: var(--muted); letter-spacing: -0.01em; }
+
+.lp :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+/* ----- Tablet / phone ----- */
+@media (max-width: 900px) {
+  .lp { font-size: 14px; }
+  .lp .lp-wrap { width: calc(100% - 40px); }
+  .lp .lp-nav-in { height: 68px; }
+  .lp .lp-logo { font-size: 22px; gap: 10px; }
+  .lp .lp-logo-icon { width: 38px; height: 38px; border-radius: 10px; }
+  .lp .lp-logo-icon svg { width: 20px; height: 20px; }
+  .lp .lp-btn { height: 40px; padding: 0 16px; font-size: 15px; border-radius: 10px; }
+  .lp .lp-nav-cta { gap: 8px; }
+
+  .lp .lp-hero { grid-template-columns: 1fr; padding-top: 32px; gap: 32px; }
+  .lp .lp-tag { height: 36px; padding: 0 16px; font-size: 15px; }
+  .lp h1 { font-size: clamp(40px, 11vw, 64px); margin-top: 16px; }
+  .lp .lp-sub { font-size: 17px; max-width: 460px; margin-top: 16px; }
+  .lp .lp-cta { height: 54px; padding: 0 30px; font-size: 17px; margin-top: 24px; border-radius: 12px; }
+  .lp .lp-perks { font-size: 14.5px; margin-top: 22px; gap: 8px 20px; }
+
+  .lp .lp-photo { width: 100%; height: auto; aspect-ratio: 1 / 0.86; max-width: 520px; margin-top: 0; }
+  .lp .lp-photo::before { bottom: -16px; height: 32px; border-radius: 0 0 22px 22px; }
+  .lp .lp-photo img { border-radius: 22px; }
+
+  .lp .lp-stats { gap: 12px; padding: 24px 0 28px; margin-top: 24px; }
+  .lp .lp-stats strong { font-size: 28px; }
+  .lp .lp-stats span { font-size: 14px; }
+}
