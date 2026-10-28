@@ -4,6 +4,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -13,10 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 export default function App() {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={<Navigate to="/login" replace />}
-      />
+      <Route path="/" element={<Landing />} />
 
       <Route path="/register" element={<Register />} />
 
