@@ -111,6 +111,17 @@ function setPage(name,updateAddress=true){
   );
   return;
 }
+
+if (name === "Skill Exchange") {
+  window.parent.postMessage(
+    {
+      type: "SKILLSWAP_NAVIGATE",
+      path: "/skill-exchange"
+    },
+    window.location.origin
+  );
+  return;
+}
   const page=name||"Home";if(updateAddress){if(window.parent!==window)window.parent.postMessage({type:"skillswap:navigate",page},window.location.origin);else{const hash=page==="Home"?"#/":`#/${encodeURIComponent(page)}`;if(location.hash!==hash)history.pushState({page},"",hash)}}currentPage=page;document.querySelectorAll(".nav button[data-page]").forEach(button=>button.classList.toggle("active",button.dataset.page===page));crumb.textContent=page==="Home"?"Overview":page;content.innerHTML=page==="Home"?homeMarkup:pageMarkup(page);if(page==="Home")restoreRequestStatuses();closeMobileMenu();applySearch();if(page!=="Home")window.scrollTo({top:0,behavior:"smooth"})}
 function applySearch(){const query=document.getElementById("search").value.trim().toLowerCase();const selectors=currentPage==="Home"?["#feed .activity",".session","#pending-requests .request","#request-history .request",".skills .skill"]:[".route-table tbody tr"];const matches=selectors.flatMap(selector=>Array.from(content.querySelectorAll(selector)));let visible=0;matches.forEach(item=>{const searchText=item.dataset.searchText||item.textContent;const show=!query||searchText.toLowerCase().includes(query);item.hidden=!show;if(show)visible++});content.querySelectorAll(".panel").forEach(panel=>{const panelMatches=matches.filter(item=>panel.contains(item));if(panelMatches.length)panel.hidden=Boolean(query)&&!panelMatches.some(item=>!item.hidden)});let empty=content.querySelector(".search-empty");if(query&&!visible&&!empty){empty=document.createElement("div");empty.className="search-empty";empty.textContent="No results match your search.";content.append(empty)}else if((!query||visible)&&empty)empty.remove()}
 const requestStorageKey="skillswap.dashboard.swapRequests.v1";
