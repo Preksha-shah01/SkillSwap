@@ -2,7 +2,8 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const generateToken = require("../utils/generateToken");
-
+const admin = require("../config/firebaseAdmin");
+const { auth } = require("../config/firebaseAdmin");
 // ======================================
 // REGISTER NEW STUDENT
 // POST /api/auth/register
@@ -171,19 +172,12 @@ const loginUser = async (req, res) => {
     }
 
     // 5. Ensure password hash exists
-    if (
-      typeof user.password !== "string" ||
-      !user.password
-    ) {
-      console.error(
-        "Login error: User password hash is missing"
-      );
-
-      return res.status(500).json({
-        success: false,
-        message: "Internal server error",
-      });
-    }
+    if (!user.password) {
+  return res.status(401).json({
+    success: false,
+    message: "This account uses Google Sign-In. Please continue with Google.",
+  });
+}
 
     // 6. Compare entered password with stored hash
     const isPasswordCorrect = await bcrypt.compare(
@@ -250,6 +244,109 @@ const getMe = async (req, res) => {
 };
 
 // ======================================
+// GOOGLE AUTHENTICATION
+// POST /api/auth/google
+// ======================================
+
+const googleLogin = async (req, res) => {
+  try {
+    const { idToken } = req.body || {};
+
+    if (typeof idToken !== "string" || !idToken) {
+      return res.status(400).json({
+        success: false,
+        message: "Firebase ID token is required",
+      });
+    }
+
+    // Verify token signature, expiry, and Firebase project.
+    const decoded = await admin.auth().verifyIdToken(idToken);
+
+    const email = decoded.email?.trim().toLowerCase();
+
+    if (!email || decoded.email_verified !== true) {
+      return res.status(403).json({
+        success: false,
+        message: "A verified Google email is required",
+      });
+    }
+
+    // First find an account already linked to this Firebase UID.
+    let user = await User.findOne({
+      firebaseUid: decoded.uid,
+    });
+
+    if (!user) {
+      // Do not automatically link an existing password account
+      // based only on matching email.
+      const existingEmailAccount = await User.findOne({
+        email,
+      });
+
+      if (existingEmailAccount) {
+        return res.status(409).json({
+          success: false,
+          message:
+            "An account already exists with this email. Sign in using its existing method.",
+        });
+      }
+
+      user = await User.create({
+        name: decoded.name || email.split("@")[0],
+        email,
+        firebaseUid: decoded.uid,
+        university: "GSFC University",
+        department: "",
+      });
+    }
+
+    // Reuse SkillSwap's existing JWT system.
+    const token = generateToken(user._id);
+
+    return res.status(200).json({
+      success: true,
+      message: "Google login successful",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        university: user.university,
+        department: user.department,
+        semester: user.semester,
+        coins: user.coins,
+        role: user.role,
+      },
+      profileIncomplete: !user.department || !user.semester,
+    });
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).json({
+        success: false,
+        message: "An account with this identity already exists",
+      });
+    }
+
+    if (
+      typeof error.code === "string" &&
+      error.code.startsWith("auth/")
+    ) {
+      return res.status(401).json({
+        success: false,
+        message: "Google authentication failed. Please try again.",
+      });
+    }
+
+    console.error("Google authentication error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+// ======================================
 // EXPORT CONTROLLERS
 // ======================================
 
@@ -257,4 +354,5 @@ module.exports = {
   registerUser,
   loginUser,
   getMe,
+  googleLogin,
 };

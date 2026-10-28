@@ -1,5 +1,9 @@
 ﻿
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../firebase";
 
 import {
   ArrowRight,
@@ -58,6 +62,7 @@ function SwapGraphic() {
 // =====================================
 
 function Login() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(false);
 
@@ -106,6 +111,20 @@ function Login() {
         );
       }
 
+      const handleGoogleLogin = async () => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+
+    console.log("Firebase Google sign-in succeeded:", result.user.email);
+
+    // Next step: verify Firebase ID token with Express
+    // and obtain the SkillSwap JWT.
+  } catch (error) {
+    console.error("Google sign-in failed:", error.code, error.message);
+    alert(`Google sign-in failed: ${error.code || error.message}`);
+  }
+};
+
       // Temporary development session.
       // Do not use browser storage as the final
       // production authentication strategy.
@@ -122,6 +141,7 @@ function Login() {
       setPassword("");
 
       console.log("SkillSwap login successful");
+      navigate("/dashboard", { replace: true });
 
     } catch (error) {
       setMessage(
@@ -328,21 +348,20 @@ function Login() {
 
             {/* GOOGLE LOGIN */}
             <button
-              className="googleButton"
-              type="button"
-              disabled
-              title="Google login is coming soon"
-            >
-              <span className="googleG">G</span>
-              Continue with Google
-            </button>
+  className="googleButton"
+  type="button"
+  onClick={() => navigate("/register")}
+>
+  <span className="googleG">G</span>
+  Continue with Google
+          </button>
 
             {/* SIGNUP */}
             <div className="signup">
               Don't have an account?{" "}
-              <button
+              <button onClick={() => navigate("/register")}
                 type="button"
-                disabled
+                
                 title="Registration page integration is coming soon"
               >
                 Sign up
