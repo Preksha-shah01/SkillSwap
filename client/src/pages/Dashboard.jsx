@@ -87,12 +87,12 @@ export default function Dashboard() {
     if (event.origin !== window.location.origin) return;
 
     if (
-      event.source === iframeRef.current?.contentWindow &&
-      event.data?.type === "SKILLSWAP_NAVIGATE" &&
-      event.data.path === "/profile-skills"
-    ) {
-      navigate("/profile-skills");
-    }
+  event.source === iframeRef.current?.contentWindow &&
+  event.data?.type === "SKILLSWAP_NAVIGATE" &&
+  ["/profile-skills", "/skill-exchange"].includes(event.data.path)
+) {
+  navigate(event.data.path);
+}
   }
 
   window.addEventListener("message", handleDashboardNavigation);

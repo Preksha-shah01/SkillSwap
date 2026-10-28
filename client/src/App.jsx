@@ -4,6 +4,8 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import SkillExchange from "./pages/SkillExchange";
+import SwapWorkspace from "./pages/SwapWorkspace";
 import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -33,6 +35,16 @@ export default function App() {
         path="*"
         element={<Navigate to="/login" replace />}
       />
+
+      <Route
+  path="/skill-exchange"
+  element={<SkillExchange />}
+/>
+
+<Route
+  path="/swap-workspace"
+  element={<SwapWorkspace />}
+/>
     </Routes>
   );
 }
