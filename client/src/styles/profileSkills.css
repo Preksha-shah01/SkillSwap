@@ -1,0 +1,101 @@
+
+.profile-skills-page {
+  min-height: 100vh;
+  background: #100d18;
+  color: #f5f0ff;
+  padding: 32px;
+  font-family: Arial, sans-serif;
+}
+
+.profile-skills-header {
+  max-width: 1100px;
+  margin: 0 auto 28px;
+}
+
+.profile-skills-header h1 {
+  font-size: 36px;
+  margin: 24px 0 8px;
+}
+
+.profile-skills-header p {
+  color: #b9aecb;
+}
+
+.profile-skills-card {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  padding: 26px;
+  border: 1px solid #342945;
+  border-radius: 18px;
+  background: #1b1527;
+}
+
+.profile-skills-card h2 {
+  margin-top: 0;
+  color: #d5baff;
+}
+
+.skill-form {
+  display: grid;
+  gap: 18px;
+}
+
+.skill-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.skill-form input,
+.skill-form textarea,
+.skill-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  background: #110d19;
+  color: white;
+  border: 1px solid #49375e;
+  border-radius: 8px;
+}
+
+.skill-form textarea {
+  min-height: 110px;
+}
+
+.profile-skills-page button {
+  padding: 11px 18px;
+  background: #8246e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.profile-skills-page button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.skill-item {
+  padding: 18px 0;
+  border-bottom: 1px solid #3b304c;
+}
+
+.skill-item h3 {
+  margin-bottom: 8px;
+}
+
+.profile-error {
+  color: #ff9292;
+}
+
+.profile-success {
+  color: #8fe3b1;
+}
+
+@media (max-width: 600px) {
+  .profile-skills-page {
+    padding: 16px;
+  }
+}

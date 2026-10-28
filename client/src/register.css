@@ -20,7 +20,7 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  padding: 38px 61px;
+  padding: 0;
 }
 
 /* ===== Card ===== */
@@ -399,7 +399,7 @@ body {
   .brand h2 { font-size: 56px; }
 }
 @media (max-width: 960px) {
-  body { padding: 16px; }
+  body { padding: 0; }
   .brand { display: none; }
   .auth-card { min-height: calc(100vh - 32px); }
   .form-panel { padding: 40px 28px; }

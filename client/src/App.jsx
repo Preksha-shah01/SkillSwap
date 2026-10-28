@@ -5,30 +5,29 @@ import {
 } from "react-router-dom";
 
 import Register from "./pages/Register";
-
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import ProfileSkills from "./pages/ProfileSkills";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
     <Routes>
-
-      <Route path="/register" element={<Register />} />
       <Route
         path="/"
         element={<Navigate to="/login" replace />}
       />
 
-      <Route
-        path="/login"
-        element={<Login />}
-      />
+      <Route path="/register" element={<Register />} />
+
+      <Route path="/login" element={<Login />} />
 
       <Route element={<ProtectedRoute />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+
         <Route
-          path="/dashboard"
-          element={<Dashboard />}
+          path="/profile-skills"
+          element={<ProfileSkills />}
         />
       </Route>
 
