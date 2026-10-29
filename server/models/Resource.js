@@ -27,29 +27,68 @@ const resourceSchema = new mongoose.Schema(
     resourceType: {
       type: String,
       required: [true, "Resource type is required"],
-      enum: ["Notes", "Tutorial", "Video", "Link"],
+      enum: [
+  "Notes",
+  "Tutorial",
+  "Video",
+  "Link",
+  "PPTs",
+  "Assignments",
+  "PYQs",
+  "Project Reports"
+],
     },
 
-    resourceUrl: {
-      type: String,
-      required: [true, "Resource URL is required"],
-      trim: true,
-      maxlength: 2048,
-      validate: {
-        validator: function (value) {
-          try {
-            const url = new URL(value);
-            return (
-              url.protocol === "http:" ||
-              url.protocol === "https:"
-            );
-          } catch {
-            return false;
-          }
-        },
-        message: "Resource URL must be a valid HTTP or HTTPS URL",
-      },
+resourceUrl: {
+  type: String,
+  trim: true,
+  maxlength: 2048,
+  validate: {
+    validator: function (value) {
+      if (!value) return true;
+
+      try {
+        const url = new URL(value);
+        return (
+          url.protocol === "http:" ||
+          url.protocol === "https:"
+        );
+      } catch {
+        return false;
+      }
     },
+    message: "Resource URL must be a valid HTTP or HTTPS URL",
+  },
+},
+
+// Uploaded file information
+fileName: {
+  type: String,
+  trim: true,
+},
+
+filePath: {
+  type: String,
+  select: false,
+},
+
+fileType: {
+  type: String,
+},
+
+fileSize: {
+  type: Number,
+  min: 0,
+},
+
+// Identify whether the resource is a file or an external link
+storageType: {
+  type: String,
+  enum: ["file", "url"],
+  default: "url",
+},
+
+
 
     uploadedBy: {
       type: mongoose.Schema.Types.ObjectId,

@@ -1,0 +1,284 @@
+.note-details-page {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Back button */
+
+.back-btn {
+  border: none;
+  background: transparent;
+  color: #858591;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.back-btn:hover {
+  color: #a78bff;
+}
+
+/* Header */
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.note-category {
+  color: #8f7bea;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.note-header h1 {
+  margin: 0 0 18px;
+  font-size: 28px;
+  color: #f5f5f7;
+}
+
+/* Author */
+
+.note-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #7657ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.author-info strong {
+  display: block;
+  color: #e8e8ed;
+  font-size: 13px;
+}
+
+.author-info span {
+  display: block;
+  margin-top: 3px;
+  color: #70707b;
+  font-size: 11px;
+}
+
+/* Actions */
+
+.note-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coin-badge {
+  background-color: #211c38;
+  border: 1px solid #302b48;
+  color: #a78bff;
+  padding: 10px 13px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.download-btn {
+  border: none;
+  background-color: #7657ff;
+  color: white;
+  padding: 11px 17px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  background-color: #6848f0;
+}
+
+/* Sections */
+
+.note-section {
+  background-color: #141419;
+  border: 1px solid #292933;
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.note-section h2 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  color: #f1f1f4;
+}
+
+.note-section > p {
+  margin: 0;
+  color: #858591;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Information */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.info-item {
+  background-color: #19191f;
+  border: 1px solid #292933;
+  border-radius: 8px;
+  padding: 13px;
+}
+
+.info-item span {
+  display: block;
+  color: #70707b;
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+
+.info-item strong {
+  color: #e8e8ed;
+  font-size: 12px;
+}
+
+/* Tags */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags span {
+  background-color: #211c38;
+  border: 1px solid #302b48;
+  color: #a78bff;
+  padding: 7px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+
+/* Reviews */
+
+.reviews-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.reviews-heading h2 {
+  margin: 0;
+}
+
+.reviews-heading > span {
+  color: #a78bff;
+  font-size: 12px;
+}
+
+.review {
+  display: flex;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid #292933;
+}
+
+.review:first-of-type {
+  border-top: none;
+}
+
+.review-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #292934;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bdbdc7;
+  font-size: 10px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.review-content strong {
+  color: #e8e8ed;
+  font-size: 12px;
+}
+
+.review-stars {
+  font-size: 10px;
+  margin: 4px 0;
+}
+
+.review-content p {
+  margin: 0;
+  color: #858591;
+  font-size: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 750px) {
+
+  .note-header {
+    flex-direction: column;
+  }
+
+  .note-actions {
+    width: 100%;
+  }
+
+  .download-btn {
+    flex: 1;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .note-header h1 {
+    font-size: 23px;
+  }
+
+  .note-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .coin-badge {
+    text-align: center;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .note-section {
+    padding: 18px;
+  }
+
+}
