@@ -50,6 +50,39 @@ app.use((req, res) => {
   });
 });
 
+
+const multer = require("multer");
+
+// Handle file upload errors
+app.use((err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    if (err.code === "LIMIT_FILE_SIZE") {
+      return res.status(413).json({
+        success: false,
+        message: "File size must not exceed 10 MB.",
+      });
+    }
+
+    return res.status(400).json({
+      success: false,
+      message: "File upload error: " + err.message,
+    });
+  }
+
+  if (
+    err.message ===
+    "Only PDF, PPT, PPTX, DOC and DOCX files are allowed."
+  ) {
+    return res.status(400).json({
+      success: false,
+      message: err.message,
+    });
+  }
+
+  next(err);
+});
+
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error("Express error:", err.message);

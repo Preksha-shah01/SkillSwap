@@ -1,5 +1,8 @@
-
+﻿
 const Resource = require("../models/Resource");
+const fs = require("fs/promises");
+const path = require("path");
+const { validateResourceFile } = require("../utils/validateResourceFile");
 
 // @desc    Create a new learning resource
 // @route   POST /api/resources
@@ -157,7 +160,7 @@ const updateResource = async (req, res) => {
       });
     }
 
-    const resource = await Resource.findById(id);
+    const resource = await Resource.findById(id).select("+filePath");
 
     if (!resource) {
       return res.status(404).json({
@@ -252,7 +255,30 @@ const deleteResource = async (req, res) => {
       });
     }
 
-    await resource.deleteOne();
+    // Get the stored filename before deleting the record
+const storedFileName =
+  resource.storageType === "file" ? resource.filePath : null;
+
+await resource.deleteOne();
+
+// Remove the uploaded file after deleting the database record
+if (
+  storedFileName &&
+  /^[a-f0-9-]{36}\.(pdf|ppt|pptx|doc|docx)$/i.test(storedFileName)
+) {
+  const fileLocation = path.join(
+    __dirname,
+    "..",
+    "uploads",
+    storedFileName
+  );
+
+  try {
+    await fs.unlink(fileLocation);
+  } catch (fileError) {
+    console.error("File cleanup error:", fileError.message);
+  }
+}
 
     return res.status(200).json({
       success: true,
@@ -269,9 +295,217 @@ const deleteResource = async (req, res) => {
 };
 
 
+const uploadFileResource = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Please select a file to upload.",
+      });
+    }
+
+    const {
+      title,
+      description,
+      subject,
+      resourceType = "Notes",
+    } = req.body;
+
+    if (
+      !title?.trim() ||
+      !description?.trim() ||
+      !subject?.trim()
+    ) {
+      await fs.unlink(req.file.path).catch(() => {});
+
+      return res.status(400).json({
+        success: false,
+        message: "Title, description and subject are required.",
+      });
+    }
+
+    const validation = await validateResourceFile(req.file);
+
+    if (!validation.valid) {
+      await fs.unlink(req.file.path).catch(() => {});
+
+      return res.status(400).json({
+        success: false,
+        message: validation.message,
+      });
+    }
+
+    const resource = await Resource.create({
+      title: title.trim(),
+      description: description.trim(),
+      subject: subject.trim(),
+      resourceType,
+      storageType: "file",
+      fileName: req.file.originalname,
+      filePath: req.file.filename,
+      fileType: validation.mime,
+      fileSize: req.file.size,
+      uploadedBy: req.user._id,
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "File uploaded successfully.",
+      resource,
+    });
+
+  } catch (error) {
+    if (req.file?.path) {
+      await fs.unlink(req.file.path).catch(() => {});
+    }
+
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+
+    console.error("Upload resource error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "File upload failed.",
+    });
+  }
+};
+
+
+const downloadResource = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.isObjectIdOrHexString(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid resource ID",
+      });
+    }
+
+    const resource = await Resource.findOne({
+      _id: id,
+      isPublished: true,
+      storageType: "file",
+    }).select("+filePath");
+
+    if (!resource) {
+      return res.status(404).json({
+        success: false,
+        message: "File not found",
+      });
+    }
+
+    const storedName = resource.filePath;
+
+    if (
+      typeof storedName !== "string" ||
+      !/^[a-f0-9-]{36}\.(pdf|ppt|pptx|doc|docx)$/i.test(storedName)
+    ) {
+      return res.status(500).json({
+        success: false,
+        message: "Invalid stored file reference",
+      });
+    }
+
+    const fileLocation = path.join(
+      __dirname,
+      "..",
+      "uploads",
+      storedName
+    );
+
+    await fs.access(fileLocation);
+
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("Cache-Control", "private, no-store");
+
+    return res.download(
+      fileLocation,
+      resource.fileName || "resource",
+      (error) => {
+        if (error) {
+          console.error("Download error:", error.message);
+
+          if (!res.headersSent) {
+            res.status(500).json({
+              success: false,
+              message: "Download failed",
+            });
+          }
+        }
+      }
+    );
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return res.status(404).json({
+        success: false,
+        message: "Uploaded file is missing",
+      });
+    }
+
+    console.error("Download resource error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+
+
+
+
+const getResourceById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.isObjectIdOrHexString(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid resource ID",
+      });
+    }
+
+    const resource = await Resource.findOne({
+      _id: id,
+      isPublished: true,
+    })
+      .populate("uploadedBy", "name university department")
+      .lean();
+
+    if (!resource) {
+      return res.status(404).json({
+        success: false,
+        message: "Resource not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      resource,
+    });
+  } catch (error) {
+    console.error("Get resource details error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
 module.exports = {
-    createResource,
-    getResources,
-    updateResource,
-    deleteResource,
+  createResource,
+  getResources,
+  updateResource,
+  deleteResource,
+  uploadFileResource,
+  getResourceById,
+  downloadResource,
 };
